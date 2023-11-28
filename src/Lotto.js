@@ -43,14 +43,6 @@ class Lotto {
     return count;
   }
 
-  // compareLottoNumber = (purchaseLotto, winningNumber) => {
-  //   return purchaseLotto.filter((number) => {
-  //     console.log(winningNumber.map(Number));
-  //     console.log(number);
-  //     console.log(winningNumber.map(Number).includes(number));
-  //     winningNumber.map(Number).includes(number)}).length;
-  // }
-
   resultLottoRank = (numberCount, bonusNumberCount) => {
     const RESULT_RANK = [];
     numberCount.forEach((number, index) => {
