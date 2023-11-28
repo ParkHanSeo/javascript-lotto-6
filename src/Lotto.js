@@ -24,7 +24,7 @@ class Lotto {
     const COMPARE_NUMBER_COUNT = [];
     const COMPARE_BONUS_NUMBER_COUNT = [];
     for(const LOTTO_ARR of this.#numbers){
-        const COMPARE_LOTTO_COUNT = this.compareLottoNumber(LOTTO_ARR, winningNumber);
+        const COMPARE_LOTTO_COUNT = this.compareLottoNumber(LOTTO_ARR, winningNumber.split(','));
         COMPARE_NUMBER_COUNT.push(COMPARE_LOTTO_COUNT);
         COMPARE_BONUS_NUMBER_COUNT.push(LOTTO_ARR.filter(number => number === Number(bonusNumber)).length);
     }
@@ -34,10 +34,22 @@ class Lotto {
   }
 
   compareLottoNumber = (purchaseLotto, winningNumber) => {
-    return purchaseLotto.filter(
-        number => winningNumber.includes(number)
-    ).length;
+    let count = 0;
+    purchaseLotto.filter((number) => {
+      if(winningNumber.map(Number).includes(number)){
+        count++;        
+      }
+    });
+    return count;
   }
+
+  // compareLottoNumber = (purchaseLotto, winningNumber) => {
+  //   return purchaseLotto.filter((number) => {
+  //     console.log(winningNumber.map(Number));
+  //     console.log(number);
+  //     console.log(winningNumber.map(Number).includes(number));
+  //     winningNumber.map(Number).includes(number)}).length;
+  // }
 
   resultLottoRank = (numberCount, bonusNumberCount) => {
     const RESULT_RANK = [];

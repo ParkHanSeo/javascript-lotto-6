@@ -1,9 +1,11 @@
+import { Console } from "@woowacourse/mission-utils";
 import UserView from './view/UserView.js';
 import Lottos from './model/Lottos.js';
 import WinningNumbers from './model/WinningNumbers.js';
 import BonusNumber from './model/BonusNumber.js';
 
 class App {
+  async play() {}
 
   constructor(){
     this.lottos;
@@ -24,8 +26,13 @@ class App {
   }
 
   async createLottoAmount(){
-    const PURCHASE_AMOUNT = await this.userView.userInputPurchaseAmount();
-    this.lottos = new Lottos(PURCHASE_AMOUNT);
+    try{
+      const PURCHASE_AMOUNT = await this.userView.userInputPurchaseAmount();
+      this.lottos = new Lottos(PURCHASE_AMOUNT);
+    }catch(error){
+      Console.print(error.message);
+      await this.createLottoAmount();
+    }
   }
 
   async createWinningNumbers(){
